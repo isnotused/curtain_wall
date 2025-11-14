@@ -1,6 +1,6 @@
 const AUTH_RECORD = {
   email: "facade.engineer@atlaslabs.com",
-  digest: "917b4fc087ccf280c13730b26b00575e76a8c16abce6c242f99e9d3b2477df12",
+  digest: "917b4fc087ccf280c13730b26b00575e76a8c16abce6c242f99e9d3b2477df12", // 访问密钥的SHA-256摘要
 };
 
 const SESSION_KEY = "facade-session";
