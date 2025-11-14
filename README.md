@@ -46,7 +46,8 @@ UV_CACHE_DIR=.uv-cache uv run python scripts/generate_initial_data.py
 UV_CACHE_DIR=.uv-cache uv run python -m http.server --directory public 8000
 ```
 
-> **提示**：`UV_CACHE_DIR` 指向项目内缓存目录，方便在受限环境下运行且易于清理。数据脚本会同步写入 `data/` 与 `public/data/`，确保静态页面开箱即用。
+**提示**：
+`UV_CACHE_DIR` 指向项目内缓存目录，方便在受限环境下运行且易于清理。数据脚本会同步写入 `data/` 与 `public/data/`，确保静态页面开箱即用。
 
 # Testing
 同步依赖并生成数据：
@@ -59,7 +60,6 @@ UV_CACHE_DIR=.uv-cache uv run python -m http.server --directory public 8000
 # Notes
 部署到静态平台前，请确认 `public/data/system_dataset.json` 已更新，确保前端直接读取。
 若需替换账号体系，只需更新 AUTH_RECORD 与配套文档，前端守卫逻辑已封装完毕。
-下一步可考虑接入真实 API 或追加 3D 可视化以增强单元件形态展示。
 
 ## 部署到静态托管平台
 
@@ -115,8 +115,6 @@ UV_CACHE_DIR=.uv-cache uv run python -m http.server --directory public 8000
 - **登录后跳回首页**：浏览器可能阻止了 `localStorage`，请检查隐私设置或清空站点数据。
 - **图表未显示**：确保网络允许访问 `cdn.jsdelivr.net`，或将 Bootstrap / Chart.js 打包成本地文件发布。
 - **数据未更新**：确认重新运行数据生成脚本，或在浏览器控制台执行 `localStorage.removeItem('facade-session')` 后刷新以强制重新加载基础数据。
-
----
 
 如需二次开发或接入企业 SSO，可在现有登录模块基础上替换凭证校验逻辑，并保留 `SESSION_KEY` 以维持控制台守卫。
 
