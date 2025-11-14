@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 DATA_PATH = BASE_DIR / "data" / "system_dataset.json"
 PUBLIC_DATA_PATH = BASE_DIR / "public" / "data" / "system_dataset.json"
 
-
+# 设计参数类
 @dataclass
 class DesignProfile:
     id: str
