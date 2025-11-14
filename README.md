@@ -8,7 +8,7 @@
 curtain_wall/
 ├── data/
 │   └── system_dataset.json          # 由脚本生成的基线数据集（原始备份）
-├── public/
+├── docs/
 │   ├── index.html                   # 登录入口
 │   ├── app.html                     # 主控制台
 │   ├── data/
@@ -33,44 +33,76 @@ curtain_wall/
 
 ## 快速开始
 
+### Linux/macOS (Bash)
+
 ```bash
 cd /Users/fuwei/curtain_wall
 
 # 1. 同步依赖（生成 .venv）
 UV_CACHE_DIR=.uv-cache uv sync
 
-# 2. 生成基线数据集（同步至 data/ 与 public/data/）
+# 2. 生成基线数据集（同步至 data/ 与 docs/data/）
 UV_CACHE_DIR=.uv-cache uv run python scripts/generate_initial_data.py
 
 # 3. 本地预览（静态服务），默认监听 http://localhost:8000
-UV_CACHE_DIR=.uv-cache uv run python -m http.server --directory public 8000
+UV_CACHE_DIR=.uv-cache uv run python -m http.server --directory docs 8000
+```
+
+### Windows (PowerShell)
+
+```powershell
+cd C:\Users\Administrator\curtain_wall
+
+# 1. 同步依赖（生成 .venv）
+$env:UV_CACHE_DIR = ".uv-cache"; uv sync
+
+# 2. 生成基线数据集（同步至 data/ 与 docs/data/）
+$env:UV_CACHE_DIR = ".uv-cache"; uv run python scripts/generate_initial_data.py
+
+# 3. 本地预览（静态服务），默认监听 http://localhost:8000
+$env:UV_CACHE_DIR = ".uv-cache"; uv run python -m http.server --directory docs 8000
 ```
 
 **提示**：
-`UV_CACHE_DIR` 指向项目内缓存目录，方便在受限环境下运行且易于清理。数据脚本会同步写入 `data/` 与 `public/data/`，确保静态页面开箱即用。
+`UV_CACHE_DIR` 指向项目内缓存目录，方便在受限环境下运行且易于清理。数据脚本会同步写入 `data/` 与 `docs/data/`，确保静态页面开箱即用。
 
 # Testing
-同步依赖并生成数据：
+
+### Linux/macOS (Bash)
+```bash
+# 同步依赖并生成数据
 UV_CACHE_DIR=.uv-cache uv sync
 UV_CACHE_DIR=.uv-cache uv run python scripts/generate_initial_data.py
-本地静态预览：
-UV_CACHE_DIR=.uv-cache uv run python -m http.server --directory public 8000
-然后访问 http://localhost:8000/index.html 使用默认账号 facade.engineer@atlaslabs.com / StrataMesh!905 登录。
+
+# 本地静态预览
+UV_CACHE_DIR=.uv-cache uv run python -m http.server --directory docs 8000
+```
+
+### Windows (PowerShell)
+```powershell
+# 同步依赖并生成数据
+$env:UV_CACHE_DIR = ".uv-cache"; uv sync
+$env:UV_CACHE_DIR = ".uv-cache"; uv run python scripts/generate_initial_data.py
+
+# 本地静态预览
+$env:UV_CACHE_DIR = ".uv-cache"; uv run python -m http.server --directory docs 8000
+```
+
+然后访问 http://localhost:8000/index.html 使用默认账号 `facade.engineer@atlaslabs.com` / `StrataMesh!905` 登录。
 
 # Notes
-部署到静态平台前，请确认 `public/data/system_dataset.json` 已更新，确保前端直接读取。
+部署到静态平台前，请确认 `docs/data/system_dataset.json` 已更新，确保前端直接读取。
 若需替换账号体系，只需更新 AUTH_RECORD 与配套文档，前端守卫逻辑已封装完毕。
 
 ## 部署到静态托管平台
 
-1. 确保执行完“快速开始”中的步骤 1-2，保证 `public/data/system_dataset.json` 与前端资产已更新。
-2. 将整个 `public/` 目录上传至目标平台（如 GitHub Pages、Vercel、Netlify 等）。
-3. 如需发布额外文档，可同时上传 `docs/` 目录。
-4. 发布后即可通过平台分配的公网地址访问。
+1. 确保执行完"快速开始"中的步骤 1-2，保证 `docs/data/system_dataset.json` 与前端资产已更新。
+2. 将整个 `docs/` 目录上传至目标平台（如 GitHub Pages、Vercel、Netlify 等）。
+3. 发布后即可通过平台分配的公网地址访问。
 
 ### GitHub Pages 快速方案
 
-在 Pages 设置中选择 `public` 目录作为发布源即可。
+在 Pages 设置中选择 `docs` 目录作为发布源即可。
 
 
 ## 系统操作指南
